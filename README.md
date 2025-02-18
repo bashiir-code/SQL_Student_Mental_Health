@@ -26,6 +26,8 @@ More than half of students are actually experiencing mild or moderate depression
 
 A trend such as this implies that mental health issues are not just due to individual cases but are rather a common frequented problem effecting not only a group but also a bigger weight of the students. Further investigation is necessary to figure out the distribution of each severity category and the features that might explain the high depression rates.
 
+Sorting the students by PHQ-9 depression severity levels will give a clearer picture of how widespread the issue is. With the five PHQ-9 test levels, we can sort the students into percentage ranges:
+
 
 
 
