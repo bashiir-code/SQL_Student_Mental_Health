@@ -63,14 +63,65 @@ The data reveals a disconcerting pattern: while a majority of students fall in t
 ![Image](https://github.com/user-attachments/assets/423e375a-d3fc-4d4e-afdc-bbf4a7985ac9)
 
 
-This chart again confirms that international students are more likely to experience higher rates of depression at every level of severity compared to domestic students. The graph shows that while mild and moderate depression are common among both groups, international students are very slightly over-represented in these categories. Notably, the "None or minimal depression" category consists mainly of an "Unknown" group, representing missing or unclassified data. This trend signifies the potential psychological problems that might confront international students, such as adaptation stress and isolation.
+Domestic students take up a larger proportion in most of the depression severity levels, with mild depression and moderate depression being more prevalent in them compared to international students. Severe depression and moderately severe depression also have significant representation in domestic students, while international students have smaller representation in severe depression levels. The "None or minimal depression" category also has a significant percentage as "Unknown Count."
 
 Deep Dive into the Data
 ---
 The high levels of depression among students might be determined by language, race, and socioeconomic status. Language challenges may pose a problem to international students, resulting in loneliness and academic pressures, while domestic students face expectations from society. Cultural and social adjustment problems are also responsible because international students are usually faced with challenges adapting to new environments, which increase their feelings of loneliness and anxiety. In addition, economic pressure also plays a very important role since foreign students tend to have higher tuition fees and limited job opportunities compared to local students, who even have their own economic pressures. Racial and ethnic backgrounds can also influence mental health, with discrimination and lack of representation in schools contributing towards feelings of isolation. Establishing these relationships can help to inform support mechanisms that cater to the diverse needs of students.
 
-Let's first analyze international students, as they lead in severe depression statistics. 
+  Is language a cause of depression?
+  --
+          SQL code 
+	  SELECT 
+          CASE 
+             WHEN todep >= 20 THEN 'Severe depression'
+             WHEN todep BETWEEN 15 AND 19 THEN 'Moderately severe depression'
+             WHEN todep BETWEEN 10 AND 14 THEN 'Moderate depression'
+             WHEN todep BETWEEN 5 AND 9 THEN 'Mild depression'
+             ELSE 'None or minimal depression'
+         END AS "Depression Severity", 
+         COUNT(CASE WHEN japanese_cate = 'High' THEN 1 END) AS "Fluent Count",
+         COUNT(CASE WHEN japanese_cate = 'Average' THEN 1 END) AS "Intermediate Count",
+         COUNT(CASE WHEN japanese_cate = 'Low' THEN 1 END) AS "Novice Count"
+         FROM students 
+         GROUP BY "Depression Severity"
 
+  
+   ![Image](https://github.com/user-attachments/assets/6114e079-c4cf-44d3-9c5a-2c053f57dca6)
+
+  There is no inverse relationship altogether between increased Japanese competence and reduced depression. Both the beginning speakers provide a bimodal experience—with little depression for some but mild to 
+  moderate levels of symptoms for others—and the fluent and the intermediate speakers have higher levels of depression. These may be attributed to external stress, conflict with fitting into culture, or elevated 
+  self-expectancy. Intermediate speakers fall mid-way between those two groups on the influence scale, rating moderate. 
+
+         SQL code
+	 SELECT 
+         CASE 
+            WHEN todep >= 20 THEN 'Severe depression'
+            WHEN todep BETWEEN 15 AND 19 THEN 'Moderately severe depression'
+            WHEN todep BETWEEN 10 AND 14 THEN 'Moderate depression'
+            WHEN todep BETWEEN 5 AND 9 THEN 'Mild depression'
+            ELSE 'None or minimal depression'
+        END AS "Depression Severity", 
+        COUNT(CASE WHEN english_cate = 'High' THEN 1 END) AS "Fluent Count",
+        COUNT(CASE WHEN english_cate = 'Average' THEN 1 END) AS "Intermediate Count",
+        COUNT(CASE WHEN english_cate = 'Low' THEN 1 END) AS "Novice Count"
+        FROM students 
+        GROUP BY "Depression Severity"
+  
+  ![Image](https://github.com/user-attachments/assets/e2fcb7c9-b1dd-4861-986d-b4b3a46e2550)
+
+
+
+  English and Japanese fluency share different patterns when the degree of depression is considered. Mild depression is the most frequent in both cases, although English-fluent speakers are more frequent than 
+  Japanese-fluent speakers. Moderate depression is relatively evenly distributed according to Japanese fluency levels, but with English, initial speakers observe it at a much higher frequency. No or little 
+  depression is more prevalent for novice Japanese speakers, while fluent speakers are higher in this percentage for English. Severe depression is higher in fluent Japanese speakers, but among English speakers, 
+  both novice and fluent speakers indicate equal proportions. Higher English ability seems to go along with decreased depression rates overall, but for Japanese, being fluent does not necessarily result in 
+  improved mental health.
+  
+  
+  
+  
+  In general, proficiency in language does not define mental well-being since other psychological and social determinants are likely involved.
     
 
 
