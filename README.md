@@ -28,6 +28,43 @@ A trend such as this implies that mental health issues are not just due to indiv
 
 Sorting the students by PHQ-9 depression severity levels will give a clearer picture of how widespread the issue is. With the five PHQ-9 test levels, we can sort the students into percentage ranges:
 
+    SQL CODE 
+    SELECT 
+    CASE 
+        WHEN todep >= 20 THEN 'Severe depression'
+        WHEN todep BETWEEN 15 AND 19 THEN 'Moderately severe depression'
+        WHEN todep BETWEEN 10 AND 14 THEN 'Moderate depression'
+        WHEN todep BETWEEN 5 AND 9 THEN 'Mild depression'
+        ELSE 'None or minimal depression'
+    END AS "Depression Severity", 
+    COUNT(inter_dom) 
+    FROM students 
+    GROUP BY "Depression Severity";
+![Image](https://github.com/user-attachments/assets/f9b2c64d-7482-435a-bbbe-0a4ae5bdf0d1)
+
+The data reveals a disconcerting pattern: while a majority of students fall in the mild and moderate depression categories, a significant percentage also have moderately severe or severe depression, demonstrating pervasive mental illness. Although there are students who report no or minimal depression, the overall pattern of the data suggests that depression is an overarching issue among the surveyed students, necessitating increased support for mental health on campus.
+
+      SQL code 
+      SELECT 
+      CASE 
+        WHEN todep >= 20 THEN 'Severe depression'
+        WHEN todep BETWEEN 15 AND 19 THEN 'Moderately severe depression'
+        WHEN todep BETWEEN 10 AND 14 THEN 'Moderate depression'
+        WHEN todep BETWEEN 5 AND 9 THEN 'Mild depression'
+        ELSE 'None or minimal depression'
+       END AS "Depression Severity", 
+       COUNT(CASE WHEN inter_dom = 'Dom' THEN 1 END) AS "Dom Count",
+       COUNT(CASE WHEN inter_dom = 'Inter' THEN 1 END) AS "Inter Count"
+      FROM students 
+      GROUP BY 1
+
+
+![Image](https://github.com/user-attachments/assets/7e5f2fa0-bf8c-4a0d-b861-478f1c39a6e5)
+The results reveal that international students report higher depression levels than domestic students at all except the most extreme levels. Both groups report high levels of mild and moderate depression but are more affected by international students, particularly in the case of the mild depression level. The trend suggests international students likely experience additional stressors such as cultural acclimatization, academic pressure, and social exclusion that contribute to elevated depression levels.
+
+    
+
+
 
 //TODO
 --
