@@ -52,15 +52,24 @@ The data reveals a disconcerting pattern: while a majority of students fall in t
         WHEN todep BETWEEN 10 AND 14 THEN 'Moderate depression'
         WHEN todep BETWEEN 5 AND 9 THEN 'Mild depression'
         ELSE 'None or minimal depression'
-       END AS "Depression Severity", 
-       COUNT(CASE WHEN inter_dom = 'Dom' THEN 1 END) AS "Dom Count",
-       COUNT(CASE WHEN inter_dom = 'Inter' THEN 1 END) AS "Inter Count"
-      FROM students 
-      GROUP BY 1
+    END AS "Depression Severity", 
+    COUNT(CASE WHEN inter_dom = 'Dom' THEN 1 END) AS "Dom Count",
+    COUNT(CASE WHEN inter_dom = 'Inter' THEN 1 END) AS "Inter Count",
+    COUNT(CASE WHEN inter_dom NOT IN ('Dom', 'Inter') THEN 1 END) AS "Other Count"
+    FROM students 
+    GROUP BY 1
 
 
-![Image](https://github.com/user-attachments/assets/7e5f2fa0-bf8c-4a0d-b861-478f1c39a6e5)
-The results reveal that international students report higher depression levels than domestic students at all except the most extreme levels. Both groups report high levels of mild and moderate depression but are more affected by international students, particularly in the case of the mild depression level. The trend suggests international students likely experience additional stressors such as cultural acclimatization, academic pressure, and social exclusion that contribute to elevated depression levels.
+![Image](https://github.com/user-attachments/assets/423e375a-d3fc-4d4e-afdc-bbf4a7985ac9)
+
+
+This chart again confirms that international students are more likely to experience higher rates of depression at every level of severity compared to domestic students. The graph shows that while mild and moderate depression are common among both groups, international students are very slightly over-represented in these categories. Notably, the "None or minimal depression" category consists mainly of an "Unknown" group, representing missing or unclassified data. This trend signifies the potential psychological problems that might confront international students, such as adaptation stress and isolation.
+
+Deep Dive into the Data
+---
+The high levels of depression among students might be determined by language, race, and socioeconomic status. Language challenges may pose a problem to international students, resulting in loneliness and academic pressures, while domestic students face expectations from society. Cultural and social adjustment problems are also responsible because international students are usually faced with challenges adapting to new environments, which increase their feelings of loneliness and anxiety. In addition, economic pressure also plays a very important role since foreign students tend to have higher tuition fees and limited job opportunities compared to local students, who even have their own economic pressures. Racial and ethnic backgrounds can also influence mental health, with discrimination and lack of representation in schools contributing towards feelings of isolation. Establishing these relationships can help to inform support mechanisms that cater to the diverse needs of students.
+
+Let's first analyze international students, as they lead in severe depression statistics. 
 
     
 
